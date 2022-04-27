@@ -1,0 +1,210 @@
+@import "variable";
+
+html {
+  box-sizing: border-box;
+  
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+form,
+section{
+  margin: 0;
+  padding: 0;
+}
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+a {
+  cursor: pointer;
+}
+
+html{
+  height: 100%;
+}
+
+input {
+  padding: 0;
+}
+
+input:required {
+  box-shadow: none;
+}
+
+input:invalid {
+  box-shadow: none;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-content-start {
+  justify-content: flex-start;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.justify-content-around {
+  justify-content: space-around;
+}
+
+.align-content-start {
+  align-content: flex-start;
+}
+
+.align-content-end {
+  align-content: flex-end;
+}
+
+.align-content-center {
+  align-content: center;
+}
+
+.align-items-start {
+  align-items: flex-start;
+}
+
+.align-items-end {
+  align-items: flex-end;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+@mixin stepperNum($num){
+  @for $i from 1 through $num {
+     &:nth-child(#{$i}) .circle::after {
+      content:"#{$i}";
+      display:block;
+      transform: translateY(50%);
+    }    
+  }
+}
+
+/* 使用@each 產出css size設定 */
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: (
+    $spacer * 0.25
+  ),
+  2: (
+    $spacer * 0.5
+  ),
+  3: (
+    $spacer * 0.75
+  ),
+  4: (
+    $spacer * 1
+  ),
+  5: (
+    $spacer * 1.25
+  ),
+  6: (
+    $spacer * 1.5
+  ),
+  7: (
+    $spacer * 1.75
+  ),
+  8: (
+    $spacer * 2
+  ),
+  9: (
+    $spacer * 3
+  )
+);
+
+@each $prop, $abbrev in (margin:m, padding:p){
+  @each $number, $val in $spacers {
+    .#{$abbrev}-#{$number} {
+       #{$prop}: $val;
+    }
+    .#{$abbrev}t-#{$number} {
+      #{$prop}-top: $val;
+    }
+    .#{$abbrev}l-#{$number} {
+      #{$prop}-left: $val;
+    } 
+    .#{$abbrev}b-#{$number} {
+      #{$prop}-bottom: $val;
+    }
+    .#{$abbrev}r-#{$number} {
+      #{$prop}-right: $val;
+    }
+    .#{$abbrev}y-#{$number} {
+      #{$prop}-top: $val;
+      #{$prop}-bottom: $val;
+    }
+    .#{$abbrev}x-#{$number} {
+      #{$prop}-left: $val;
+      #{$prop}-right: $val;
+    }
+  }
+}
+
+%input-style {
+  width: 100%;
+  height: 50px;
+  border: 1px solid $form-border-dark;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 0.8rem; 
+  background: transparent;
+  &:hover, &:focus{
+    border-width: 3px;
+  }
+}
+%label-style {
+  display:block;
+  padding-bottom: 8px;
+  font-size: 12px;
+  color: $label-font-color;
+}
+%button-style {
+  font-size: 14px;
+  font-weight: 500;
+  flex-basis:100%;
+  height: 46px;
+  border-radius: 5px;
+  cursor: pointer;   
+}
